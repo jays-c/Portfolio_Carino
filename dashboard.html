@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Dashboard | Jayson</title>
+<link rel="icon" type="image/png" href="one Logo(Main).png">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial, sans-serif;
+}
+
+body{
+background: url("bg.gif") no-repeat center center;
+  background-size: cover;
+  background-attachment: fixed; /* This is the "magic" line */
+  
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* NAVIGATION */
+header{
+width:100%;
+background:rgba(255,255,255,0.9);
+padding:15px 0;
+box-shadow:0 3px 8px rgba(0,0,0,0.1);
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+  }
+
+  .logo {
+    height: 50px;
+    width: auto;
+    margin-right: 10px;
+  }
+
+  .logo-text {
+    font-size: 20px;
+    font-weight: bold;
+    color: black;
+  }
+
+nav{
+width:80%;
+margin:auto;
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+
+nav ul{
+list-style:none;
+display:flex;
+gap:30px;
+}
+
+nav a{
+text-decoration:none;
+color:#333;
+font-weight:bold;
+}
+
+nav a:hover{
+color:#764ba2;
+}
+
+/* CONTAINER */
+.container{
+    background:white;
+max-width:900px;
+width:90%;
+margin:40px auto;
+
+padding:30px;
+border-radius:12px;
+box-shadow:0 8px 20px rgba(0,0,0,0.2);
+}
+
+/* TITLE */
+.container h1{
+text-align:center;
+margin-bottom:20px;
+}
+.info h2{
+  color:#764ba2;
+  margin-bottom:10px;
+  }
+
+  .info h3{
+  margin-bottom:10px;
+  }
+
+  .info p{
+  margin-bottom:8px;
+  }
+
+
+/* BACK BUTTON */
+.back-btn{
+display:inline-block;
+margin-bottom:20px;
+padding:10px 20px;
+border:2px solid #ddd;
+border-radius:8px;
+text-decoration:none;
+color:#333;
+font-weight:600;
+}
+
+.back-btn:hover{
+background:#333;
+color:#fff;
+}
+
+/* FORM */
+.add-task-form{
+background:white;
+padding:30px;
+border-radius:12px;
+box-shadow:0 8px 20px rgba(0,0,0,0.2);
+}
+
+.form-row{
+display:flex;
+gap:15px;
+flex-wrap:wrap;
+}
+
+.input-group{
+flex:1;
+display:flex;
+flex-direction:column;
+margin-bottom:15px;
+}
+
+label{
+margin-bottom:5px;
+font-size:0.85rem;
+}
+
+input{
+padding:10px;
+border:1px solid #ccc;
+border-radius:6px;
+}
+
+/* UPLOAD */
+.file-upload-wrapper{
+display:flex;
+align-items:center;
+gap:10px;
+}
+
+.file-input-visible{
+display:none;
+}
+
+.file-upload-btn{
+padding:10px 20px;
+border:2px dashed #ccc;
+border-radius:8px;
+cursor:pointer;
+font-weight:600;
+}
+
+.file-upload-btn:hover{
+background:#eee;
+}
+
+.file-name{
+font-size:0.85rem;
+color:#555;
+}
+
+#imagePreview{
+display:none;
+margin-top:10px;
+width:200px;
+border-radius:10px;
+}
+
+/* BUTTON */
+.add-btn{
+margin-top:15px;
+padding:12px;
+border:none;
+border-radius:8px;
+background:#764ba2;
+color:white;
+cursor:pointer;
+}
+
+.add-btn:hover{
+opacity:0.9;
+}
+
+/* CARD (QUIZ DISPLAY) */
+.container_image{
+    background:white;
+max-width:900px;
+width:90%;
+margin:40px auto;
+align-items: center;     /* Vertical */
+margin-top:40px;
+background:rgba(255,255,255,0.95);
+width:90%;
+max-width:650px;
+padding:30px;
+border-radius:15px;
+box-shadow:0 8px 20px rgba(0,0,0,0.2);
+display:flex;
+gap:20px;
+}
+
+@keyframes spinIn {
+  from {
+    transform: rotate(-180deg);
+    opacity: 0;
+  }
+  to {
+    transform: rotate(0deg);
+    opacity: 1;
+  }
+}
+
+.profile img{
+
+margin-top:10px;
+width:200px;
+border-radius:10px;
+gap:20px;
+}
+.profile h2{
+text-align:center;
+
+color:#000000;
+  margin-bottom:10px;
+}
+ .dropdown {
+  position: relative;
+}
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+
+  display: flex;              /* FIX */
+  flex-direction: column;     /* FIX */
+
+  min-width: 200px;
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+  list-style: none;
+  padding: 8px 0;
+
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: all 0.3s;
+  z-index: 1000;
+}
+
+/* each item full width */
+.dropdown-menu li {
+  width: 100%;
+}
+
+/* make links full clickable row */
+.dropdown-item {
+  display: block;
+  padding: 12px 16px;
+  width: 100%;
+  color: #1e293b;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.dropdown-item:hover {
+  background: #f5f5f5;
+}
+
+/* show dropdown */
+.dropdown:hover .dropdown-menu,
+.dropdown.open .dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+
+
+            .hero {
+                text-align: center;
+                padding: 36px 20px 20px;
+            }
+
+            .hero h1 {
+                font-size: 30px;
+                font-weight: 700;
+                margin-bottom: 20PX;
+            }
+
+            .hero p {
+                color: #666;
+                margin-top: 5px;
+                font-size: 13px;
+                letter-spacing: 1px;
+            }
+
+            .summary-strip {
+                display: flex;
+                justify-content: center;
+                gap: 16px;
+                padding: 28px 30px 10px;
+                flex-wrap: wrap;
+            }
+
+            .summary-card {
+                background: white;
+                border-radius: 14px;
+                padding: 18px 28px;
+                min-width: 130px;
+                text-align: center;
+                box-shadow: 0 4px 14px rgba(0,0,0,.07);
+            }
+
+            .summary-card .num {
+                font-size: 30px;
+                font-weight: 700;
+            }
+
+            .summary-card .lbl {
+                font-size: 11px;
+                color: #888;
+                margin-top: 2px;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+            }
+
+            .summary-card.black-card {
+                background: black;
+                color: white;
+            }
+
+            .summary-card.black-card .lbl {
+                color: #999;
+            }
+
+            .summary-card {
+                cursor: pointer;
+                transition: transform 0.2s;
+            }
+            .summary-card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+            }
+
+
+/* FOOTER TEXT */
+body > h1,
+body > p,
+body > a{
+margin-top:20px;
+text-align:center;
+}
+
+ footer{
+  margin-top:auto;  
+  width:100%;
+  text-align:center;
+  padding:20px;
+  background:rgba(255,255,255,0.9);
+  box-shadow:0 -3px 8px rgba(0,0,0,0.1);
+  }
+
+  footer h3{
+  font-size:16px;
+  margin-bottom:8px;
+  }
+
+  footer p{
+  font-size:14px;
+
+
+
+  }
+</style>
+
+</head>
+
+<body>
+
+    <header>
+    <nav>
+        <a href="" class="logo-container">
+          <img src="logo ONE.png" class="logo">
+          <span class="logo-text">Portfolio</span>
+        </a>
+
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="dashboard.html">Dashboard</a></li>
+        <!--  <li><a href="quiz.html">Quiz</a></li>-->
+        <!--  <li><a href="exam.html">Exam</a></li>-->
+        <!-- Dropdown Menu -->
+            <li class="dropdown">
+            <span class="nav-link dropdown-toggle" style="font-weight: bold;">Uploads</span>
+
+            <ul class="dropdown-menu">
+                <li><a href="quiz_upload.html" class="dropdown-item">Upload Quiz</a></li>
+                <li><a href="lab_upload.html" class="dropdown-item">Upload Lab Work </a></li>
+                <li><a href="exam_Upload.html" class="dropdown-item">Upload Exam </a></li>
+            </ul>
+            </li>
+
+     
+
+    </nav>
+  </header>
+
+ 
+      
+        <div class="hero">
+            <h1>My Dashboard</h1>
+            <div class="summary-card black-card">
+                <div class="num" id="total-count">4</div>
+                <div class="lbl">Total Uploaded</div>
+            </div>
+        </div>
+        <div class="summary-strip">
+            
+            <div class="summary-card">
+                <div class="num" id="quiz-count">3</div>
+                <div class="lbl">Quizzes</div>
+            </div>
+            <div class="summary-card">
+                <div class="num" id="lab-count">1</div>
+                <div class="lbl">Lab Activities</div>
+            </div>
+            <div class="summary-card">
+                <div class="num" id="exam-count">0</div>
+                <div class="lbl">Exams</div>
+            </div>
+        </div>
+
+
+
+    <!-- ONE CARD (repeat this block for others) -->
+<section class="container_image" data-type="quiz"> 
+    <div class="profile">
+        <!-- CLICKABLE IMAGE -->
+        <a href="Quiz_1.jpg" target="_blank">
+            <img src="Quiz_1.jpg">
+        </a>
+    </div>
+
+    <!-- CHART -->
+    <div class="chart-box" style="width:300px;margin:auto;text-align:center;font-family:sans-serif;">
+  <h3>Quiz 1</h3>
+
+  <div style="position:relative;width:200px;height:200px;margin:20px auto;">
+    
+    <div class="pieChart" style="
+      width:100%;
+      height:100%;
+      border-radius:50%;
+      background:conic-gradient(#ddd 0% 100%);
+      animation: spinIn 1s ease;
+    "></div>
+
+    <div style="
+      position:absolute;
+      top:50%;
+      left:50%;
+      transform:translate(-50%,-50%);
+      width:120px;
+      height:120px;
+      background:white;
+      border-radius:50%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:24px;
+      font-weight:bold;
+    ">
+      <span class="percentText">0%</span>
+    </div>
+  </div>
+
+  <div style="display:flex;justify-content:center;gap:30px;margin-top:10px;">
+    <div style="display:flex;align-items:center;gap:8px;">
+      <div style="width:15px;height:15px;background:#3498db;"></div>
+      <span class="correctLabel">Correct</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:8px;">
+      <div style="width:15px;height:15px;background:#ff3b3b;"></div>
+      <span class="wrongLabel">Wrong</span>
+    </div>
+  </div>
+</div>
+</section>
+
+<section class="container_image" data-type="quiz"> 
+    <div class="profile">
+        <!-- CLICKABLE IMAGE -->
+        <a href="Quiz_2.jpg" target="_blank">
+            <img src="Quiz_2.jpg">
+        </a>
+    </div>
+
+    <!-- CHART -->
+    <div class="chart-box" style="width:300px;margin:auto;text-align:center;font-family:sans-serif;">
+  <h3>Quiz 2</h3>
+
+  <div style="position:relative;width:200px;height:200px;margin:20px auto;">
+    
+    <div class="pieChart" style="
+      width:100%;
+      height:100%;
+      border-radius:50%;
+      background:conic-gradient(#ddd 0% 100%);
+      animation: spinIn 1s ease;
+    "></div>
+
+    <div style="
+      position:absolute;
+      top:50%;
+      left:50%;
+      transform:translate(-50%,-50%);
+      width:120px;
+      height:120px;
+      background:white;
+      border-radius:50%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:24px;
+      font-weight:bold;
+    ">
+      <span class="percentText">0%</span>
+    </div>
+  </div>
+
+  <div style="display:flex;justify-content:center;gap:30px;margin-top:10px;">
+    <div style="display:flex;align-items:center;gap:8px;">
+      <div style="width:15px;height:15px;background:#3498db;"></div>
+      <span class="correctLabel">Correct</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:8px;">
+      <div style="width:15px;height:15px;background:#ff3b3b;"></div>
+      <span class="wrongLabel">Wrong</span>
+    </div>
+  </div>
+</div>
+</section>
+
+<section class="container_image" data-type="quiz"> 
+    <div class="profile">
+        <!-- CLICKABLE IMAGE -->
+        <a href="Quiz_3.jpg" target="_blank">
+            <img src="Quiz_3.jpg">
+        </a>
+    </div>
+
+    <!-- CHART -->
+    <div class="chart-box" style="width:300px;margin:auto;text-align:center;font-family:sans-serif;">
+  <h3>Quiz 3</h3>
+
+  <div style="position:relative;width:200px;height:200px;margin:20px auto;">
+    
+    <div class="pieChart" style="
+      width:100%;
+      height:100%;
+      border-radius:50%;
+      background:conic-gradient(#ddd 0% 100%);
+      animation: spinIn 1s ease;
+    "></div>
+
+    <div style="
+      position:absolute;
+      top:50%;
+      left:50%;
+      transform:translate(-50%,-50%);
+      width:120px;
+      height:120px;
+      background:white;
+      border-radius:50%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:24px;
+      font-weight:bold;
+    ">
+      <span class="percentText">0%</span>
+    </div>
+  </div>
+
+  <div style="display:flex;justify-content:center;gap:30px;margin-top:10px;">
+    <div style="display:flex;align-items:center;gap:8px;">
+      <div style="width:15px;height:15px;background:#3498db;"></div>
+      <span class="correctLabel">Correct</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:8px;">
+      <div style="width:15px;height:15px;background:#ff3b3b;"></div>
+      <span class="wrongLabel">Wrong</span>
+    </div>
+  </div>
+</div>
+</section>
+
+<section class="container_image"data-type="lab"> 
+    <div class="profile">
+        <!-- CLICKABLE IMAGE -->
+        <a href="lab_1.jpg" target="_blank">
+            <img src="lab_1.jpg">
+        </a>
+    </div>
+
+    <!-- CHART -->
+    <div class="chart-box" style="width:300px;margin:auto;text-align:center;font-family:sans-serif;">
+  <h3>Laboratory 1</h3>
+
+  <div style="position:relative;width:200px;height:200px;margin:20px auto;">
+    
+    <div class="pieChart" style="
+      width:100%;
+      height:100%;
+      border-radius:50%;
+      background:conic-gradient(#ddd 0% 100%);
+      animation: spinIn 1s ease;
+    "></div>
+
+    <div style="
+      position:absolute;
+      top:50%;
+      left:50%;
+      transform:translate(-50%,-50%);
+      width:120px;
+      height:120px;
+      background:white;
+      border-radius:50%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:24px;
+      font-weight:bold;
+    ">
+      <span class="percentText">0%</span>
+    </div>
+  </div>
+
+ <!--
+  <div style="display:flex;justify-content:center;gap:30px;margin-top:10px;">
+    <div style="display:flex;align-items:center;gap:8px;">
+      <div style="width:15px;height:15px;background:#3498db;"></div>
+    <span class="correctLabel">Correct</span> 
+    </div>
+    <div style="display:flex;align-items:center;gap:8px;">
+      <div style="width:15px;height:15px;background:#ff3b3b;"></div>
+     <span class="wrongLabel">Wrong</span>
+    </div>
+  </div>
+ 
+ 
+ 
+ --> 
+</div>
+</section>
+
+
+  
+
+<script>
+    // Navigation Dropdown Logic
+    document.querySelectorAll('.dropdown-toggle').forEach(toggle => {
+        toggle.addEventListener('click', e => {
+            const parent = e.target.closest('.dropdown');
+            parent.classList.toggle('open');
+        });
+    });
+
+    document.addEventListener('click', e => {
+        document.querySelectorAll('.dropdown.open').forEach(drop => {
+            if (!drop.contains(e.target)) drop.classList.remove('open');
+        });
+    });
+
+    // Pie Chart Logic
+    document.addEventListener("DOMContentLoaded", () => {
+        // Define your scores here: correct vs total
+        const scores = [
+            { correct: 16, total: 20 }, // Quiz 1
+            { correct: 18, total: 20 }, // Quiz 2
+            { correct: 5, total: 20 }, // Quiz 3
+            { correct: 85, total: 100 }  // Laboratory 1
+        ];
+
+        // Select all image container sections
+        const sections = document.querySelectorAll(".container_image");
+
+        sections.forEach((section, i) => {
+            if (!scores[i]) return; // Safety check
+
+            const pie = section.querySelector(".pieChart");
+            const text = section.querySelector(".percentText");
+            const correctLabel = section.querySelector(".correctLabel");
+            const wrongLabel = section.querySelector(".wrongLabel");
+
+            const correct = scores[i].correct;
+            const total = scores[i].total;
+            const wrong = total - correct;
+            const targetPercent = (correct / total) * 100;
+
+            let currentDisplayPercent = 0;
+
+            // Animate the chart and the text
+            const interval = setInterval(() => {
+                // Speed of animation
+                currentDisplayPercent += 1;
+
+                if (currentDisplayPercent >= targetPercent) {
+                    currentDisplayPercent = targetPercent;
+                    clearInterval(interval);
+                }
+
+                // Update the Pie Chart colors
+                // Blue (#3498db) represents Correct
+                // Red (#ff3b3b) represents Wrong
+                pie.style.background = `conic-gradient(
+                    #3498db 0% ${currentDisplayPercent}%, 
+                    #ff3b3b ${currentDisplayPercent}% 100%
+                )`;
+
+                // Update the percentage text in the center
+                text.textContent = Math.round(currentDisplayPercent) + "%";
+            }, 15);
+
+            // Update the text labels below the chart
+            correctLabel.textContent = `Correct (${correct})`;
+            wrongLabel.textContent = `Wrong (${wrong})`;
+        });
+    });
+
+
+          document.addEventListener("DOMContentLoaded", () => {
+          const summaryCards = document.querySelectorAll('.summary-card');
+          const sections = document.querySelectorAll('.container_image');
+
+          summaryCards.forEach(card => {
+              card.addEventListener('click', () => {
+                  // Get the ID of the number inside the card to know what was clicked
+                  const typeId = card.querySelector('.num').id;
+                  
+                  sections.forEach(section => {
+                      const sectionType = section.getAttribute('data-type');
+
+                      if (typeId === 'total-count') {
+                          // Show everything
+                          section.style.display = 'flex';
+                      } else if (typeId === 'quiz-count' && sectionType === 'quiz') {
+                          section.style.display = 'flex';
+                      } else if (typeId === 'lab-count' && sectionType === 'lab') {
+                          section.style.display = 'flex';
+                      } else if (typeId === 'exam-count' && sectionType === 'exam') {
+                          section.style.display = 'flex';
+                      } else {
+                          // Hide the ones that don't match
+                          section.style.display = 'none';
+                      }
+                  });
+              });
+          });
+      });
+</script>
+
+ 
+<footer>
+
+    <h3>© 2026 Jayson A. Cariño. All rights reserved.</h3>
+
+    <p>
+    <b>✉ Email:</b> jayson.carino@cvsu.edu.ph <br>
+    <b>🌐 Facebook:</b> Jayson Cariño
+    </p>
+
+    </footer>
+
+</body>
+</html>

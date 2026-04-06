@@ -1,224 +1,442 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>My Portfolio</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <title>My Portfolio</title>
+  <link rel="icon" type="image/png" href="one Logo(Main).png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<style>
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Arial, sans-serif;
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap');
+
+  *{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:Arial, sans-serif;
+  }
+
+  :root {
+  --tag-bg: #e91e8c;
+  --tag-text: #fff;
+  --tag-outline-bg: transparent;
+  --tag-outline-border: #292828;
+  --tag-outline-text: #2b2a2a;
 }
 
-body{
-background:url("bg.gif") no-repeat center center/cover;
-min-height:100vh;
-display:flex;
-flex-direction:column;
-align-items:center;
+  body{
+  background:url("bg.gif") no-repeat center center/cover;
+   background-size: cover;
+  background-attachment: fixed; /* This is the "magic" line */
+  
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  }
+
+  /* Navigation */
+
+  header{
+  width:100%;
+  background:rgba(255,255,255,0.9);
+  padding:15px 0;
+  box-shadow:0 3px 8px rgba(0,0,0,0.1);
+  }
+
+
+  .logo-container {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+  }
+
+  .logo {
+    height: 50px;
+    width: auto;
+    margin-right: 10px;
+  }
+
+  .logo-text {
+    font-size: 20px;
+    font-weight: bold;
+    color: black;
+  }
+
+
+
+  nav{
+  width:80%;
+  margin:auto;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  }
+
+  nav ul{
+  list-style:none;
+  display:flex;
+  gap:30px;
+  }
+
+  nav a{
+  text-decoration:none;
+  color:#333;
+  font-weight:bold;
+  }
+
+  nav a:hover{
+  color:#764ba2;
+  }
+
+  /* Card */
+
+  /* Update the Card styling */
+.card {
+  margin-top: 40px; /* Reduced from 60px for better flow */
+  background: rgba(255, 255, 255, 0.95);
+  width: 90%;
+  max-width: 650px;
+  padding: 40px;
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  display: flex;
+  gap: 30px;
+  align-items: center;
 }
 
-/* Navigation */
-
-header{
-width:100%;
-background:rgba(255,255,255,0.9);
-padding:15px 0;
-box-shadow:0 3px 8px rgba(0,0,0,0.1);
+/* Update the About Section styling */
+.about-section {
+  margin-top: 40px; /* Match the card margin */
+  background: rgba(255, 255, 255, 0.95);
+  width: 90%;
+  max-width: 650px;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  text-align: center;
 }
 
-nav{
-width:80%;
-margin:auto;
-display:flex;
-justify-content:space-between;
-align-items:center;
+/* Add this to create a gap before the footer */
+section:last-of-type {
+  margin-bottom: 60px;
 }
 
-nav ul{
-list-style:none;
-display:flex;
-gap:30px;
+/* Fix for the Binary Game section to remove bullet points */
+.profile li {
+  list-style: none;
+}
+  @media (max-width:700px){
+
+  .card{
+  flex-direction:column;
+  text-align:center;
+  
+  }
+
+  .profile img{
+  width:180px;
+  height:180px;
+  }
+
+
+  }
+
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 4px;
 }
 
-nav a{
-text-decoration:none;
-color:#333;
-font-weight:bold;
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border-radius: 100px;
+  padding: 7px 16px;
+  font-size: 0.82rem;
+  font-weight: 600;
 }
 
-nav a:hover{
-color:#764ba2;
+.tag::before { content: ''; font-size: 0.65rem; }
+
+.tag-filled {
+  background: var(--tag-bg);
+  color: var(--tag-text);
 }
 
-/* Card */
-
-.card{
-margin-top:60px;
-background:rgba(255,255,255,0.95);
-width:90%;
-max-width:650px;
-padding:40px;
-border-radius:15px;
-box-shadow:0 8px 20px rgba(0,0,0,0.2);
-display:flex;
-gap:30px;
-align-items:center;
-}
-
-@media (max-width:700px){
-
-.card{
-flex-direction:column;
-text-align:center;
-}
-
-.profile img{
-width:180px;
-height:180px;
-}
-
-}
-
-
-
-
-
-
-.profile img{
-width:250px;
-height:250px;
-border-radius:10px;
-object-fit:cover;
-}
-
-.info h2{
-color:#764ba2;
-margin-bottom:10px;
-}
-
-.info h3{
-margin-bottom:10px;
-}
-
-.info p{
-margin-bottom:8px;
-}
-
-/* About section */
-
-/* About section */
-
-.about-section{
-margin-top:30px;
-background:rgba(255,255,255,0.95);
-width:90%;
-max-width:650px;
-padding:30px;
-border-radius:15px;
-box-shadow:0 8px 20px rgba(0,0,0,0.2);
-text-align:center;
-}
-
-.about-section h4{
-color:#764ba2;
-margin-bottom:10px;
-}
-
-.about-section p{
-line-height:1.6;
+.tag-outline {
+  background: transparent;
+  border: 2px solid var(--tag-outline-border);
+  color: var(--tag-outline-text);
+  margin-bottom: 10px;
 }
 
 
-/*try lang*/
-.card,
-.about-section{
-width:90%;
-max-width:650px;
+
+  .profile img{
+  width:250px;
+  height:250px;
+  border-radius:10px;
+  object-fit:cover;
+  }
+
+  .info h2{
+  color:#764ba2;
+  margin-bottom:10px;
+  }
+
+  .info h3{
+  margin-bottom:10px;
+  }
+
+  .info p{
+  margin-bottom:8px;
+  }
+
+  /* About section */
+
+  /* About section */
+
+  .about-section{
+  margin-top:30px;
+  background:rgba(255,255,255,0.95);
+  width:90%;
+  max-width:650px;
+  padding:30px;
+  border-radius:15px;
+  box-shadow:0 8px 20px rgba(0,0,0,0.2);
+  text-align:center;
+  }
+
+  .about-section h4{
+  color:#764ba2;
+  margin-bottom:10px;
+  }
+
+  .about-section p{
+  line-height:1.6;
+  }
+
+
+  /*try lang*/
+  .card,
+  .about-section{
+  width:90%;
+  max-width:650px;
+  }
+
+  .dropdown {
+  position: relative;
 }
 
-/* Footer */
+/* IMPORTANT: force dropdown list vertical */
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
 
-footer{
-margin-top:auto;
-width:100%;
-text-align:center;
-padding:20px;
-background:rgba(255,255,255,0.9);
-box-shadow:0 -3px 8px rgba(0,0,0,0.1);
+  display: flex;              /* FIX */
+  flex-direction: column;     /* FIX */
+
+  min-width: 200px;
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+  list-style: none;
+  padding: 8px 0;
+
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: all 0.3s;
+  z-index: 1000;
 }
 
-footer h3{
-font-size:16px;
-margin-bottom:8px;
+/* each item full width */
+.dropdown-menu li {
+  width: 100%;
 }
 
-footer p{
-font-size:14px;
+/* make links full clickable row */
+.dropdown-item {
+  display: block;
+  padding: 12px 16px;
+  width: 100%;
+  color: #1e293b;
+  text-decoration: none;
+  font-weight: 500;
 }
-</style>
+
+.dropdown-item:hover {
+  background: #f5f5f5;
+}
+
+/* show dropdown */
+.dropdown:hover .dropdown-menu,
+.dropdown.open .dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+  /* Footer */
+
+  footer{
+  margin-top:auto;
+  width:100%;
+  text-align:center;
+  padding:20px;
+  background:rgba(255,255,255,0.9);
+  box-shadow:0 -3px 8px rgba(0,0,0,0.1);
+  }
+
+  footer h3{
+  font-size:16px;
+  margin-bottom:8px;
+  }
+
+  footer p{
+  font-size:14px;
+
+
+
+  }
+  </style>
 </head>
 
 <body>
 
-<header>
-<nav>
-<h2 class="logo">Portfolio</h2>
+  <header>
+    <nav>
+        <a href="" class="logo-container">
+          <img src="logo ONE.png" class="logo">
+          <span class="logo-text">Portfolio</span>
+        </a>
 
-<ul>
-<li><a href="index.html">Home</a></li>
-<li><a href="quiz.html">Quiz</a></li>
-<li><a href="exam.html">Exam</a></li>
-<li><a href="https://jays-c.github.io/BitGame/">Play a game</a></li>
-</ul>
+        <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="dashboard.html">Dashboard</a></li>
+       <!--  <li><a href="quiz.html">Quiz</a></li>-->
+      <!--  <li><a href="exam.html">Exam</a></li>-->
+      <!-- Dropdown Menu -->
+<li class="dropdown">
+ <span class="nav-link dropdown-toggle" style="font-weight: bold;">Uploads</span>
 
-</nav>
-</header>
+  <ul class="dropdown-menu">
+    <li><a href="quiz_upload.html" class="dropdown-item">Upload Quiz</a></li>
+    <li><a href="lab_upload.html" class="dropdown-item">Upload Lab Work </a></li>
+    <li><a href="exam_Upload.html" class="dropdown-item">Upload Exam </a></li>
+  </ul>
+</li>
+
+
+
+
+
+   
+
+    </nav>
+  </header>
 
 <!-- First Section -->
 
-<section class="card">
+    <section class="card">
 
-<div class="profile">
-<img src="ako.jpg" alt="Profile Picture">
-</div>
+        <div class="profile">
+        <img src="ako.jpg" alt="Profile Picture">
+        </div>
 
-<div class="info">
+        <div class="info">
 
-<h2>About Me</h2><br>
+          <h2>About Me</h2><br>
 
-<h3><strong>Name:</strong> Jayson Cariño</h3>
-<p><strong>Student No.:</strong> 251100529</p>
-<p> <strong>Section:</strong> CS - 1D</p>
-<p><strong>Course:</strong> The Bachelor of Science in Computer Science (BSCS)</p>
-
-</div>
-
-</section>
+          <h3><strong>Name:</strong> Jayson Cariño</h3>
+          <p><strong>Student No.:</strong> 251100529</p>
+          <p> <strong>Section:</strong> CS - 1D</p>
+          <p><strong>Course:</strong> The Bachelor of Science in Computer Science (BSCS)</p>
+          <span class="tag tag-outline"> Developer </span>
+          
+          <span class="tag tag-outline"> HTML </span>
+          <span class="tag tag-outline"> CSS </span>
+          <span class="tag tag-outline"> Java Script </span>
+          <span class="tag tag-outline"> Student </span>
+          
+        </div>
+      
+          
+    
+    </section>
 
 <!-- Second Section -->
 
-<section class="about-section">
+    <section class="about-section">
 
-<h4>A Bit of Information About Me</h4>
+        <h4>A Bit of Information About Me</h4>
 
-<p>Hello! I'm Jayson. I enjoy listening to music and watching anime.</p>
+    <p>
+        Hello there! My name is <strong>Jayson</strong>, and I’m currently a student working toward my degree in <strong>Computer Science (BSCS)</strong>. 🎓 
+        <br><br>
+        Becoming a <strong>Software Engineer</strong> is my big dream. Aside from wanting to build cool apps and solve problems, I’ve heard people say "engineer pogi"—and honestly, who wouldn’t want that title? 😎💻 
+        <br><br>
+        When I’m not staring at code, I’m usually behind a camera lens capturing moments through <strong>photography</strong>. 📸 To relax, I love diving into the world of <strong>anime</strong> or just vibing out to my favorite <strong>music</strong> playlists. 🎧🔥
+    </p>
+    </section>
+    
+    <section class="card">
 
-</section>
+        
 
-<footer>
+        <div class="info">
 
-<h3>© 2026 Jayson A. Cariño. All rights reserved.</h3>
+          <h2>B1NARY GAME</h2><br>
 
-<p>
-<b>✉ Email:</b> jayson.carino@cvsu.edu.ph <br>
-<b>🌐 Facebook:</b> Jayson Cariño
-</p>
+          <p>A <strong>GAME </strong> that will train you and your brain to solve fast. Hope you like it!</p>
+          
 
-</footer>
+        </div>
+          <div class="profile">
+              <a href="https://jays-c.github.io/BitGame/">
+                  <img src="B_GAME_logo.png" alt="B1NARY GAME">
+              </a>
+          </div>
+    </section>
 
-</body>
+
+
+    <script>
+    function refreshPage() {
+      location.reload();
+    }
+        // Toggle dropdown on click (for mobile or touch)
+    document.querySelectorAll('.dropdown-toggle').forEach(toggle => {
+      toggle.addEventListener('click', e => {
+        const parent = e.target.closest('.dropdown');
+        parent.classList.toggle('open');
+      });
+    });
+
+    // Optional: close dropdown if clicked outside
+    document.addEventListener('click', e => {
+      document.querySelectorAll('.dropdown.open').forEach(drop => {
+        if (!drop.contains(e.target)) drop.classList.remove('open');
+      });
+    });
+    </script>
+
+    <footer>
+
+    <h3>© 2026 Jayson A. Cariño. All rights reserved.</h3>
+
+    <p>
+    <b>✉ Email:</b> jayson.carino@cvsu.edu.ph <br>
+    <b>🌐 Facebook:</b> Jayson Cariño
+    </p>
+
+    </footer>
+
+  </body>
 </html>

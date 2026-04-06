@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Upload Grades</title>
+<link rel="icon" type="image/png" href="one Logo(Main).png">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+body{
+  
+  background:url("bg.gif") no-repeat center center/cover;
+   background-size: cover;
+  background-attachment: fixed; /* This is the "magic" line */
+  
+  
+    padding:40px 20px;
+}
+
+/* CONTAINER */
+.container{
+    max-width:800px;
+    margin:auto;
+}
+
+/* HEADER */
+header{
+    text-align:center;
+    margin-bottom:30px;
+}
+
+header h1{
+    font-size:2rem;
+    font-weight:700;
+}
+
+/* BACK BUTTON */
+.back-btn{
+    display:inline-block;
+    margin-bottom:20px;
+    padding:10px 20px;
+    border:2px solid #000000;
+    border-radius:8px;
+    text-decoration:none;
+    color:#0f172a;
+    font-weight:600;
+}
+
+.back-btn:hover{
+    background:#0f172a;
+    color:white;
+}
+
+/* FORM CARD */
+.add-task-form{
+    background:white;
+    padding:30px;
+    border-radius:12px;
+    box-shadow:0 8px 24px rgba(0,0,0,0.1);
+}
+
+/* ROW */
+.form-row{
+    display:flex;
+    gap:15px;
+    flex-wrap:wrap;
+}
+
+.input-group{
+    flex:1;
+    display:flex;
+    flex-direction:column;
+    margin-bottom:15px;
+}
+
+label{
+    font-size:0.85rem;
+    margin-bottom:5px;
+    color:#64748b;
+}
+
+input{
+    padding:12px;
+    border:2px solid #e2e8f0;
+    border-radius:8px;
+}
+
+/* UPLOAD */
+.file-upload-wrapper{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+/* 🔥 hide default input */
+.file-input-visible{
+    display:none;
+}
+
+.file-upload-btn{
+    padding:10px 20px;
+    border:2px dashed #e2e8f0;
+    border-radius:8px;
+    cursor:pointer;
+    font-weight:600;
+}
+
+.file-upload-btn:hover{
+    border-color:#3b82f6;
+    background:#eff6ff;
+}
+
+.file-name{
+    font-size:0.85rem;
+    color:#64748b;
+}
+
+/* PREVIEW */
+#imagePreview{
+    display:none;
+    margin-top:10px;
+    width:200px;
+    border-radius:10px;
+    cursor:pointer;
+}
+
+/* BUTTON */
+.add-btn{
+    margin-top:20px;
+    padding:12px;
+    border:none;
+    border-radius:8px;
+    background:linear-gradient(135deg,#f08623,#d48206);
+    color:rgb(0, 0, 0);
+    font-weight:600;
+    cursor:pointer;
+}
+
+.add-btn:hover{
+    opacity:0.9;
+}
+</style>
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <header>
+            <h1>Upload Quiz</h1>
+        </header>
+
+        <a href="index.html" class="back-btn">← Back to Profile</a>
+
+        <div class="add-task-form">
+
+            <form>
+
+                <div class="form-row">
+
+                    <div class="input-group">
+                    <label>Quiz No.</label>
+                    <input type="text" placeholder="e.g., Quiz 1" required>
+                    </div>
+
+                    <div class="input-group">
+                    <label>Score Obtained</label>
+                    <input type="number" placeholder="e.g., 20" required>
+                    </div>
+
+                    <div class="input-group">
+                    <label>Maximum Score</label>
+                    <input type="number" value="20">
+                    </div>
+
+                </div>
+
+                    <!-- UPLOAD -->
+                    <div class="input-group">
+                    <label>Upload Photo</label>
+
+                        <div class="file-upload-wrapper">
+
+                        <input type="file" id="taskImage" class="file-input-visible" accept="image/*">
+
+                        <label for="taskImage" class="file-upload-btn">
+                        📁 Choose File
+                        </label>
+
+                        <span class="file-name">No file chosen</span>
+
+                        </div>
+
+                    <img id="imagePreview">
+
+                    </div>
+
+                <button class="add-btn">Add Assessment</button>
+
+                </form>
+
+            </div>
+
+    </div>
+
+    <script>
+    const input = document.getElementById("taskImage");
+    const preview = document.getElementById("imagePreview");
+    const fileName = document.querySelector(".file-name");
+
+    input.addEventListener("change", function () {
+        const file = this.files[0];
+
+        if (file) {
+            fileName.textContent = file.name;
+
+            const reader = new FileReader();
+
+            reader.onload = function (e) {
+                preview.src = e.target.result;
+                preview.style.display = "block";
+            };
+
+            reader.readAsDataURL(file);
+        }
+    });
+    </script>
+
+    </body>
+    </html>
