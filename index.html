@@ -8,6 +8,7 @@
 
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Permanent+Marker&display=swap');
 
   *{
   margin:0;
@@ -283,6 +284,22 @@ section:last-of-type {
   transform: translateY(0);
 }
 
+.tech-font {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 2.5rem;
+    letter-spacing: 4px;
+    color: #764ba2; /* Your signature purple color */
+    text-transform: uppercase;
+    font-weight: 900;
+    
+    /* Subtle neon glow effect */
+    text-shadow: 0 0 10px rgba(118, 75, 162, 0.5), 
+                 0 0 20px rgba(118, 75, 162, 0.2);
+    
+    /* Optional: adds a slight "digital glitch" look */
+    border-left: 5px solid #764ba2;
+    padding-left: 15px;
+}
   /* Footer */
 
   footer{
@@ -387,24 +404,32 @@ section:last-of-type {
     </section>
     
     <section class="card">
-
+    <div class="info">
+        <h2 class="tech-font">B1NARY GAME</h2><br>
         
+        <p style="line-height: 1.6; color: #333; font-size: 1.05rem;">
+            <strong>Think fast or get left behind!</strong><br>
+            B1NARY GAME pushes your brain to the limit with rapid-fire bitwise challenges. 
+            Whether you're a coding pro or just love a good puzzle, this game will test 
+            your reflexes and <strong>hardware-level logic</strong>. 
+            <br><br>
+            <em style="color: #4c3266;">How many bits can you flip before the clock runs out?</em>
+        </p>
 
-        <div class="info">
+      <!-- <div class="tags" style="margin-top: 20px;">
+            <span class="tag tag-filled" style="background: #ff3b3b;"> High Speed </span>
+            <span class="tag tag-filled" style="background: #2ecc71;"> Reflex Test </span>
+            <span class="tag tag-outline"> Bitwise Logic </span>
+        </div>--> 
+    </div>
 
-          <h2>B1NARY GAME</h2><br>
+    <div class="profile">
+        <a href="https://jays-c.github.io/BitGame/">
+            <img src="B_GAME_logo.png" alt="B1NARY GAME" class="game-logo-hover">
+        </a>
 
-          <p>A <strong>GAME </strong> that will train you and your brain to solve fast. Hope you like it!</p>
-          
-
-        </div>
-          <div class="profile">
-              <a href="https://jays-c.github.io/BitGame/">
-                  <img src="B_GAME_logo.png" alt="B1NARY GAME">
-              </a>
-          </div>
-    </section>
-
+    </div>
+</section>
 
 
     <script>
